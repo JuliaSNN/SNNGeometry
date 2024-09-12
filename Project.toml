@@ -1,0 +1,14 @@
+name = "SNNGeometry"
+uuid = "95194f1e-909d-4d4f-8ffb-8c26bdfd9324"
+authors = ["Alessio <alessio.quaresima@mpi.nl>"]
+version = "0.1.0"
+
+[deps]
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+GeometryBasics = "5c1252a2-5f33-56bf-86c9-59e7332b4326"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+XLSX = "fdbf4ff8-1666-58a4-91e7-1b58723a45e0"
