@@ -3,4 +3,4 @@
 
 """
 
-distance(x,y) = norm(x-y)
+distance(x, y) = norm(x - y)

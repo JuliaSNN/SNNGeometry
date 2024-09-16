@@ -9,7 +9,7 @@ using SparseArrays
 using XLSX
 
 #set up the NeuronPoint type
-prototype = meta(Point(0.0,0.0,0.0), type="Ep", layer=1, comp="s")
+prototype = meta(Point(0.0, 0.0, 0.0), type = "Ep", layer = 1, comp = "s")
 NeuronPoint = typeof(prototype) #the type of our neurons. a 3D Point with metadata type,layer,compartment
 import Base.zero
 Base.zero(::Type{NeuronPoint}) = prototype   #zeros(NeuronPoint,n) now works :)
@@ -23,6 +23,6 @@ include("subsetting.jl")
 include("flatten.jl")
 
 
-greet() = zeros(NeuronPoint,3)
+greet() = zeros(NeuronPoint, 3)
 
 end # module

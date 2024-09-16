@@ -13,7 +13,9 @@ println()
 #calling the function without filename uses the example file "test_input/test.xlsx"
 #it returns DataFrames with all relevant parameters.
 #you are free to generate these dataframes in other ways than using the xlsx file.
-df_conn, df_dens, df_size, df_dend = get_connection_parameters_from_xlsx(joinpath(dirname(@__FILE__),"../test_input/newnumbers.xlsx")) #or specify a (filename)
+df_conn, df_dens, df_size, df_dend = get_connection_parameters_from_xlsx(
+    joinpath(dirname(@__FILE__), "../test_input/newnumbers.xlsx"),
+) #or specify a (filename)
 
 
 #from the parameters we generate positions for all neurons+compartments,

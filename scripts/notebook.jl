@@ -14,8 +14,8 @@ end
 
 # ╔═╡ 3f996ea4-c951-4337-ad46-6f0fba7bc9fd
 begin
-	include("/home/dicbro/Coding/NetGeo/src/NetGeo.jl")
-	import .NetGeo
+    include("/home/dicbro/Coding/NetGeo/src/NetGeo.jl")
+    import .NetGeo
 end
 
 # ╔═╡ 44011e78-9f1a-44ef-ab78-3c9354bb56a6
@@ -62,7 +62,9 @@ First let's load all parameters from the excel file into DataFrames that the res
 "
 
 # ╔═╡ fa7a0865-4ff9-45d3-b845-359022370d1d
-df_conn, df_dens, df_size, df_dend = NetGeo.get_connection_parameters_from_xlsx("/home/dicbro/Coding/NetGeo/test_input/newnumbers.xlsx")
+df_conn, df_dens, df_size, df_dend = NetGeo.get_connection_parameters_from_xlsx(
+    "/home/dicbro/Coding/NetGeo/test_input/newnumbers.xlsx",
+)
 
 
 # ╔═╡ eaba4c42-499a-4bc4-a5b3-51d0d1ef19a8
@@ -79,8 +81,8 @@ v = NetGeo.generate_positions(df_dens, df_size, df_dend)
 
 # ╔═╡ 3879f7d0-58ac-4eaa-ba82-c0603954c20f
 begin
-	using GeometryBasics
-	meta.(v)
+    using GeometryBasics
+    meta.(v)
 end
 
 # ╔═╡ 359e5ac5-922b-4a38-9984-9978b0ab4f99
@@ -107,10 +109,10 @@ M = NetGeo.generate_connections(df_conn, v)
 possibleConnections = length(M)
 
 # ╔═╡ 9894649b-b037-4f24-af52-4b499d4a3e42
-actualConnections = sum(>(0.0),M)
+actualConnections = sum(>(0.0), M)
 
 # ╔═╡ 9408ca78-f83e-4d2c-8f01-33a7320eb403
-sparsity = actualConnections/possibleConnections
+sparsity = actualConnections / possibleConnections
 
 # ╔═╡ 9551a4c7-bb85-43df-822e-9a4e2fd54724
 md"""
@@ -119,27 +121,27 @@ For your aplications you might not want to work with one big connectivity matrix
 """
 
 # ╔═╡ b9743807-74e8-46f6-b512-662d7125ab79
-I2ToEs  = NetGeo.subset_by_type(M,v, "I2", "Es")
+I2ToEs = NetGeo.subset_by_type(M, v, "I2", "Es")
 
 
 # ╔═╡ 6b6a2f83-a8e0-40c0-a415-955f28f2d537
-EpToEpq = NetGeo.subset_by_type_and_compartment(M,v,"Ep","Ep","q")
+EpToEpq = NetGeo.subset_by_type_and_compartment(M, v, "Ep", "Ep", "q")
 
 
 # ╔═╡ d463b256-a1c2-4c90-aa34-c70a3a890cd2
-I1ToEpp = NetGeo.subset_by_type_and_compartment(M,v,"I1","Ep","p")
+I1ToEpp = NetGeo.subset_by_type_and_compartment(M, v, "I1", "Ep", "p")
 
 # ╔═╡ 10f8796f-0b3a-4258-bdbb-bba87c0142e5
-sum(>(0),I2ToEs[:,6000])
+sum(>(0), I2ToEs[:, 6000])
 
 # ╔═╡ 8c2f2b61-ee7b-47ad-95ba-a26172e1edbb
-sum(>(0),EpToEpq[end,:])
+sum(>(0), EpToEpq[end, :])
 
 # ╔═╡ e77b84a0-099e-47b3-89b3-d6beda8dcad2
 md"I also made this function to make all the subsets for you, but maybe you want to edit the function to your preffered naming conventions."
 
 # ╔═╡ e17c7751-48bd-42b1-8a8e-e990fd94a48c
-subsetDict = NetGeo.create_subset_dict(M,v)
+subsetDict = NetGeo.create_subset_dict(M, v)
 
 # ╔═╡ 0cd81408-288d-4f1e-ba91-e9f1d2bc56c5
 md"""
