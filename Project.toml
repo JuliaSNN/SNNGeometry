@@ -1,6 +1,6 @@
 name = "SNNGeometry"
 uuid = "95194f1e-909d-4d4f-8ffb-8c26bdfd9324"
-authors = ["Alessio <alessio.quaresima@mpi.nl>"]
+authors = ["Alessio <alessio.quaresima@pasteur.fr>"]
 version = "0.1.0"
 
 [deps]
