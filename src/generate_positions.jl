@@ -55,13 +55,12 @@ function generate_positions(df_dens, df_size, df_dend)
         n = round(Int, xr * yr * zr * dens) #number of this type in this layer
 
         #generate
-        v[i:i+n-1] .=
-            meta.(
-                Point3.([xyz for xyz in eachcol(rand(distr, n))]),
-                type = t,
-                layer = l,
-                comp = "s",
-            )
+        v[i:(i+n-1)] .= meta.(
+            Point3.([xyz for xyz in eachcol(rand(distr, n))]),
+            type = t,
+            layer = l,
+            comp = "s",
+        )
 
         if t == "Ep" #pyramidal neurons get compartments with locations
             for r in eachrow(df_dend)
@@ -72,14 +71,13 @@ function generate_positions(df_dens, df_size, df_dend)
                 θ = rand(Uniform(0, 2π), n)
                 r = len * sin(ϕ)
 
-                v[i+j:i+j+n-1] .=
-                    meta.(
-                        Point.(v[i:i+n-1]) .+
-                        Point3.([[r * sin(θθ), r * cos(θθ), len * cos(ϕ)] for θθ in θ]),
-                        type = t,
-                        layer = l,
-                        comp = comp,
-                    )
+                v[(i+j):(i+j+n-1)] .= meta.(
+                    Point.(v[i:(i+n-1)]) .+
+                    Point3.([[r * sin(θθ), r * cos(θθ), len * cos(ϕ)] for θθ in θ]),
+                    type = t,
+                    layer = l,
+                    comp = comp,
+                )
             end
         end
         i += n + j
@@ -107,7 +105,7 @@ function get_neuron_idx_overview(v)
     n = length(v)
     for i = 1:n
         if meta(v[i]) != oldmeta
-            push!(df, [i_old:i-1, oldmeta.type, oldmeta.layer, oldmeta.comp])
+            push!(df, [i_old:(i-1), oldmeta.type, oldmeta.layer, oldmeta.comp])
             i_old = i
             oldmeta = meta(v[i])
         end

@@ -20,10 +20,8 @@ function generate_connections(df_conn, v; sparseM = true)
         #find indices of neurons eligible for this connection type
         overview_pre_i = findfirst(
             (overview.Type .== conntype.pre_type)     #note the LHS is a column of overview, while the RHS is a single cell of df_conn
-            .&
-            (overview.Layer .== conntype.pre_layer)    # for each of these
-            .&
-            (overview.Comp .== "s"),
+            .& (overview.Layer .== conntype.pre_layer)    # for each of these
+            .& (overview.Comp .== "s"),
         )
         overview_post_i = findfirst(
             (overview.Type .== conntype.post_type) .&
